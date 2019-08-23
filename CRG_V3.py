@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+#all of this was done using jupyter notebook initally so it is really messy... sorry
+
+
 from numpy import genfromtxt
 from matplotlib.pyplot import plot,title,xlabel,xticks,yticks,show,legend,grid
 import seaborn as sns
