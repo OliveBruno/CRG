@@ -1,2 +1,2 @@
 # CRG
-calcula e faz um gráfico do cr em função do cp
+Calcula e faz um gráfico do CR em função do CP
