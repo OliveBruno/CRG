@@ -2,6 +2,7 @@
 # coding: utf-8
 
 #all of this was done using jupyter notebook initally so it is really messy...
+#can be improved but already does what I wanted it to
 
 
 from numpy import genfromtxt
