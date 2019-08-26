@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-#all of this was done using jupyter notebook initally so it is really messy... sorry
+#all of this was done using jupyter notebook initally so it is really messy...
 
 
 from numpy import genfromtxt
