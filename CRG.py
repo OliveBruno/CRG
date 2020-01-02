@@ -4,6 +4,8 @@ from tkinter import messagebox as msg
 from numpy import genfromtxt
 from matplotlib.pyplot import plot,title,xlabel,xticks,yticks,show,legend,grid,tight_layout
 import seaborn as sns
+import fileFixer as ff
+import os
 sns.set()
 
 class CR_Calculator:
@@ -60,7 +62,7 @@ class CR_Calculator:
             else:
                 try:
                     self.grades[i] = float(self.grades[i])
-                except:
+                except Exception as e:
                     self.grades[i] = float(self.grades[i].replace(",","."))
                     
 
@@ -186,6 +188,26 @@ def askDataFilePath():
 
     return filePath
 
+
+def getInfofromUser():
+
+    while(True):
+
+        try:
+    
+            filePath = askDataFilePath()
+
+            if(not(".txt" in filePath)):
+               print("Please provide a valid .txt file")
+            else:
+               break
+           
+        except Exception as e:
+            print("Please provide a valid .txt file")
+
+
+    return filePath
+
 #
 #
 #
@@ -201,22 +223,40 @@ if(__name__ == "__main__"): ## code starts here ##
 
     try:
         totalCourse = int(input("numero total de creditos no seu curso (Fisica eh 164):"))
-        print(" ")
 
         if(totalCourse < 80):#defaults to Physics basically
             totalCourse = 164
-    except:
+            
+    except Exception as e:
         totalCourse = 164
-    
-    filePath = askDataFilePath()
 
-    studentData = CR_Calculator(filePath,totalCourse = totalCourse)
+
+    while(True):
+
+        try:
+
+            filePath = getInfofromUser()
+            
+            ff.fix(filePath)
+
+            filePath = filePath.strip(".txt")+"Fixed.txt"
+            studentData = CR_Calculator(filePath,totalCourse = totalCourse)
+            os.remove(filePath)
+
+            break
+
+        except Exception as e:
+            
+            print("Please provide a valid .txt file")
+
+            filePath = getInfofromUser()
 
     CR = studentData.CR
     CR_sem = studentData.CR_sem
     CP = studentData.CP
 
-    
+
+    print(" ")
     printCRTable(
                  studentData.CR,
                  studentData.CR_sem,
